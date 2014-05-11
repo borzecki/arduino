@@ -130,7 +130,7 @@ int data = 8;    // DIN pin of MAX7219 module
 int load = 9;    // CS pin of MAX7219 module
 int clock = 10;  // CLK pin of MAX7219 module
 
-int maxInUse = 4;    //change this variable to set how many MAX7219's you'll use
+int maxInUse = 1;    //change this variable to set how many MAX7219's you'll use
 
 MaxMatrix m(data, load, clock, maxInUse); // define module
 

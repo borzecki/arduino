@@ -33,7 +33,7 @@
 #define ENABLE_NEWPING_DISTANCE_SENSOR_DRIVER
 
 // constants
-#define RUN_TIME 90                     /**< seconds the robot will run */
+#define RUN_TIME 60                     /**< seconds the robot will run */
 #define TOO_CLOSE 10                    /**< distance to obstacle in centimeters */
 #define MAX_DISTANCE (TOO_CLOSE * 20)   /**< maximum distance to track with sensor */
 #define RANDOM_ANALOG_PIN 5             /**< unused analog pin to use as random seed */
@@ -41,8 +41,8 @@
 #ifdef ENABLE_ADAFRUIT_MOTOR_DRIVER
 #include <AFMotor.h>
 #include "adafruit_motor_driver.h"
-#define LEFT_MOTOR_INIT 1
-#define RIGHT_MOTOR_INIT 3
+#define LEFT_MOTOR_INIT 3
+#define RIGHT_MOTOR_INIT 1
 #endif
 
 #ifdef ENABLE_NEWPING_DISTANCE_SENSOR_DRIVER
@@ -109,7 +109,7 @@ namespace Michelino
         void move()
         {
             leftMotor.setSpeed(255);
-            rightMotor.setSpeed(255);
+            rightMotor.setSpeed(-255);
             state = stateMoving;
         }
         
@@ -133,12 +133,12 @@ namespace Michelino
         bool turn(unsigned long currentTime)
         {
             if (random(2) == 0) {
-                leftMotor.setSpeed(-255);
+                leftMotor.setSpeed(255);
                 rightMotor.setSpeed(255);
             }
             else {
                 leftMotor.setSpeed(255);
-                rightMotor.setSpeed(-255);
+                rightMotor.setSpeed(255);
             }
             state = stateTurning;
             endStateTime = currentTime + random(500, 1000);
